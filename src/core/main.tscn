@@ -1,9 +1,37 @@
 [gd_scene format=3 uid="uid://csehfx88edrj1"]
 
+[ext_resource type="PackedScene" uid="uid://bcnrfiqv10bhw" path="res://src/player/player.tscn" id="1_ivtyw"]
 [ext_resource type="PackedScene" uid="uid://bwmhixliuiiqq" path="res://src/ui/debug/debug_text_overlay.tscn" id="1_ukt3u"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sn2t0"]
 
 [node name="Main" type="Node" unique_id=1077554886]
 process_mode = 3
+
+[node name="WorldRoot" type="Node2D" parent="." unique_id=779052960]
+
+[node name="Camera2D" type="Camera2D" parent="WorldRoot" unique_id=1072207950]
+
+[node name="LeftBorder" type="StaticBody2D" parent="WorldRoot" unique_id=1541958442]
+position = Vector2(-320, 0)
+rotation = 1.5707964
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/LeftBorder" unique_id=847127455]
+shape = SubResource("WorldBoundaryShape2D_sn2t0")
+
+[node name="RightBorder" type="StaticBody2D" parent="WorldRoot" unique_id=247084365]
+position = Vector2(320, 0)
+rotation = 4.712389
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/RightBorder" unique_id=777475596]
+shape = SubResource("WorldBoundaryShape2D_sn2t0")
+
+[node name="EntityRoot" type="Node2D" parent="." unique_id=954228002]
+process_mode = 1
+
+[node name="Player" parent="EntityRoot" unique_id=1287901083 instance=ExtResource("1_ivtyw")]
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=1767459730]
 process_mode = 3
